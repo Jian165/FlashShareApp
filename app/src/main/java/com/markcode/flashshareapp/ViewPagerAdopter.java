@@ -17,11 +17,24 @@ public class ViewPagerAdopter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return null;
+
+        if(position == 0)
+        {
+            return new Dashboard();
+        }
+        else if (position == 1)
+        {
+            return new FlashCard();
+        }
+        else {
+
+            return new Profile();
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 3;
     }
 }
