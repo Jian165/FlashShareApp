@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="rick_black">#001011</color>
+    <color name="midnight_green">#093A3E</color>
+    <color name="verdigris">#3AAEB8</color>
+    <color name="electric_blue">#64E8ED</color>
+    <color name="light_sky_blue">#96C7EA</color>
+    <color name="white">#FFFFFF</color>
+</resources>

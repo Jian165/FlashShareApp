@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "773442140043",
+    "project_id": "flashshareapp-7488e",
+    "storage_bucket": "flashshareapp-7488e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773442140043:android:67847ad04bd5987229a18e",
+        "android_client_info": {
+          "package_name": "com.markcode.flashshareapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJc6HMvbo3x_K40xwd0G0fCtXr9TKn2FU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
