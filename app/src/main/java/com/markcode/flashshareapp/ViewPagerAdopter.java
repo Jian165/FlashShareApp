@@ -3,8 +3,6 @@ package com.markcode.flashshareapp;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ViewPagerAdopter extends FragmentStateAdapter {

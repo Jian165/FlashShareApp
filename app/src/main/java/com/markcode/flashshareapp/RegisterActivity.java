@@ -40,9 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox seePassword, seeConfirmPassword;
 
 
-
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
+    DatabaseReference DataRef;
 
     String UserID;
 
@@ -64,8 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         mUser =  mAuth.getCurrentUser();
         seePassword = findViewById(R.id.cb_seePassword);
         seeConfirmPassword =  findViewById(R.id.cb_seeConfrimPassword);
-
-
+        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users");
 
 
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
@@ -89,9 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(isChecked)
                 {
+
                     inputPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-
-
 
                 }
                 else
@@ -120,7 +119,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    public void createEmptyData(String UserID)
+    {
+        HashMap UserDatahashmap = new HashMap();
+        UserDatahashmap.put("UserName",null);
+        UserDatahashmap.put("FistName",null);
+        UserDatahashmap.put("LastName",null);
+        UserDatahashmap.put("Course",null);
+        DataRef.child(UserID).setValue(UserDatahashmap);
     }
 
     private void PerformAuthentic() {
@@ -153,6 +161,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful())
                     {
                         progressDialog.dismiss();
+                        UserID = mAuth.getCurrentUser().getUid();
+                        createEmptyData(UserID);
                         sendUserToNextActivity();
                         Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 

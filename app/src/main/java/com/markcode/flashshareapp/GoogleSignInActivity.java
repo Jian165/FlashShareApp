@@ -3,6 +3,7 @@ package com.markcode.flashshareapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class GoogleSignInActivity extends MainActivity  {
 
     FirebaseUser mUser;
 
-    DatabaseReference rootFirebaseDatabase;
+    DatabaseReference DataRef;
 
     String UserID;
     ProgressDialog progressDialog;
@@ -48,7 +49,7 @@ public class GoogleSignInActivity extends MainActivity  {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        rootFirebaseDatabase = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users_Data");
+        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users_Data");
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Google Sign in...");
@@ -97,6 +98,8 @@ public class GoogleSignInActivity extends MainActivity  {
                             progressDialog.dismiss();
                             Toast.makeText(GoogleSignInActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            UserID = mAuth.getCurrentUser().getUid();
+                            createEmptyData( UserID);
                             updateUI(user);
                         } else {
                             progressDialog.dismiss();
@@ -114,6 +117,16 @@ public class GoogleSignInActivity extends MainActivity  {
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void createEmptyData(String UserID)
+    {
+        HashMap UserDatahashmap = new HashMap();
+        UserDatahashmap.put("UserName","null");
+        UserDatahashmap.put("FistName","null");
+        UserDatahashmap.put("LastName","null");
+        UserDatahashmap.put("Course","null");
+        DataRef.child(UserID).setValue(UserDatahashmap);
     }
 
 
