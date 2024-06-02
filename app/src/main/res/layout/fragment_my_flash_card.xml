@@ -30,14 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/verdigris"
-            android:src="@drawable/ic_add"
             android:backgroundTint="@color/midnight_green"
+            android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="@+id/DeckRecycler"
             app:layout_constraintEnd_toEndOf="@+id/DeckRecycler"
-            app:layout_constraintHorizontal_bias="0.904"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/DeckRecycler"
             app:layout_constraintTop_toTopOf="@+id/DeckRecycler"
-            app:layout_constraintVertical_bias="0.926" />
+            app:layout_constraintVertical_bias="0.927" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
