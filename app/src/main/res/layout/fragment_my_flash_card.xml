@@ -12,15 +12,32 @@
         android:layout_height="match_parent"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Flashcard"
-            android:textSize="50dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/DeckRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="750dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.496" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/verdigris"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="@color/midnight_green"
+            app:layout_constraintBottom_toBottomOf="@+id/DeckRecycler"
+            app:layout_constraintEnd_toEndOf="@+id/DeckRecycler"
+            app:layout_constraintHorizontal_bias="0.904"
+            app:layout_constraintStart_toStartOf="@+id/DeckRecycler"
+            app:layout_constraintTop_toTopOf="@+id/DeckRecycler"
+            app:layout_constraintVertical_bias="0.926" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
