@@ -16,10 +16,8 @@
          android:layout_width="match_parent"
          android:layout_height="40dp"
          android:layout_marginStart="20dp"
-         android:layout_marginTop="44dp"
+         android:layout_marginTop="32dp"
          android:layout_marginEnd="20dp"
-         app:tabTextColor="@color/white"
-         app:tabSelectedTextColor="@color/rick_black"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintHorizontal_bias="0.0"
          app:layout_constraintStart_toStartOf="parent"
@@ -27,12 +25,14 @@
          app:tabIndicator="@drawable/tab_pillshape_slelector"
          app:tabIndicatorAnimationMode="elastic"
          app:tabIndicatorColor="@color/electric_blue"
-         app:tabIndicatorGravity="stretch" />
+         app:tabIndicatorGravity="stretch"
+         app:tabSelectedTextColor="@color/rick_black"
+         app:tabTextColor="@color/white" />
 
      <androidx.viewpager2.widget.ViewPager2
          android:id="@+id/DashBoardViewPager"
          android:layout_width="match_parent"
-         android:layout_height="700dp"
+         android:layout_height="730dp"
          app:layout_constraintBottom_toBottomOf="parent"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintHorizontal_bias="0.0"
