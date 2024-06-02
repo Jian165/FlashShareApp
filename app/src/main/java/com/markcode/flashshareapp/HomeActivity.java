@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     TabLayoutMediator tabLayoutMediator;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
         tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+
+
 
                 if(position == 0)
                 {
@@ -62,5 +65,6 @@ public class HomeActivity extends AppCompatActivity {
         badgeDrawable.setNumber(0);
         badgeDrawable.setMaxCharacterCount(4);
     }
+
 
 }

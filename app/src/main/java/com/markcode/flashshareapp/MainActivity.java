@@ -22,8 +22,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     CheckBox seelogPassword;
+    String UserID;
 
 
     @Override
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoogle = findViewById(R.id.btn_google);
         btnPersonalMail =  findViewById(R.id.btn_CustomMail);
 
-        DatabaseRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Test");
+        DatabaseRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -78,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //performLogin();
-                DatabaseRef.setValue("test");
+                performLogin();
 
             }
         });
@@ -128,16 +131,39 @@ public class MainActivity extends AppCompatActivity {
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 
-
-
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful())
                     {
+
                         progressDialog.dismiss();
-                        sendUserToNextActivity();
-                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                       UserID = mAuth.getCurrentUser().getUid();
+
+                        DatabaseRef.child("Users").child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                if(snapshot.exists())
+                                {
+                                    sendUserToNextActivity();
+                                }
+
+                                else
+                                {
+                                    sendUserToUserDataActivity();
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        Toast.makeText(MainActivity.this, "Successfully login", Toast.LENGTH_SHORT).show();
+
                     }
                     else
                     {
@@ -155,6 +181,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void sendUserToUserDataActivity() {
+        Intent intent = new Intent(MainActivity.this,UserData.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

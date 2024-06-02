@@ -24,8 +24,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -65,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         mUser =  mAuth.getCurrentUser();
         seePassword = findViewById(R.id.cb_seePassword);
         seeConfirmPassword =  findViewById(R.id.cb_seeConfrimPassword);
-        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users");
+        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
 
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
@@ -121,15 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void createEmptyData(String UserID)
-    {
-        HashMap UserDatahashmap = new HashMap();
-        UserDatahashmap.put("UserName",null);
-        UserDatahashmap.put("FistName",null);
-        UserDatahashmap.put("LastName",null);
-        UserDatahashmap.put("Course",null);
-        DataRef.child(UserID).setValue(UserDatahashmap);
-    }
+
 
     private void PerformAuthentic() {
         String email = inputEmail.getText().toString();
@@ -161,8 +156,6 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful())
                     {
                         progressDialog.dismiss();
-                        UserID = mAuth.getCurrentUser().getUid();
-                        createEmptyData(UserID);
                         sendUserToNextActivity();
                         Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
@@ -170,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
                     else
                     {
                         progressDialog.dismiss();
+                        sendUserToNextActivity();
                         Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -178,6 +172,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         
     }
+
+
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(RegisterActivity.this,MainActivity.class);

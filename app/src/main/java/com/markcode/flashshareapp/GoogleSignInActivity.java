@@ -24,8 +24,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.HashMap;
@@ -49,8 +52,7 @@ public class GoogleSignInActivity extends MainActivity  {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users_Data");
-
+        DataRef = FirebaseDatabase.getInstance("https://flashshareapp-7488e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Users");
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Google Sign in...");
         progressDialog.show();
@@ -99,8 +101,26 @@ public class GoogleSignInActivity extends MainActivity  {
                             Toast.makeText(GoogleSignInActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserID = mAuth.getCurrentUser().getUid();
-                            createEmptyData( UserID);
-                            updateUI(user);
+                            DataRef.child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    if(snapshot.exists())
+                                    {
+                                        updateUI(user);
+                                    }
+                                    else
+                                    {
+                                        RedirectCreateAccount();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                         } else {
                             progressDialog.dismiss();
                             Toast.makeText(GoogleSignInActivity.this, "Login Fail \n Error:"+task.getException(), Toast.LENGTH_SHORT).show();
@@ -119,17 +139,14 @@ public class GoogleSignInActivity extends MainActivity  {
         startActivity(intent);
     }
 
-    public void createEmptyData(String UserID)
+    public void RedirectCreateAccount()
     {
-        HashMap UserDatahashmap = new HashMap();
-        UserDatahashmap.put("UserName","null");
-        UserDatahashmap.put("FistName","null");
-        UserDatahashmap.put("LastName","null");
-        UserDatahashmap.put("Course","null");
-        DataRef.child(UserID).setValue(UserDatahashmap);
+        Intent intent = new Intent(GoogleSignInActivity.this,UserData.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
     }
-
-
 
 
 
