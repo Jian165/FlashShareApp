@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateDeck">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login_register"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="90dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="257dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="80dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/bg_blue_dash" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/bg_blue_arc" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create Deck"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView6"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/btn_AddIcon"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5"
+                    app:layout_constraintVertical_bias="0.127"
+                    app:srcCompat="@drawable/ic_photo" />
+
+                <EditText
+                    android:id="@+id/DeckTitle"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/bg_pillshape_blue"
+                    android:ems="100"
+                    android:hint="Deck Title"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                <EditText
+                    android:id="@+id/CourseSubject"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_pillshape_blue"
+                    android:ems="10"
+                    android:hint="Course Subject"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/DeckTitle"
+                    app:layout_constraintStart_toStartOf="@+id/DeckTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/DeckTitle" />
+
+                <EditText
+                    android:id="@+id/Topic"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_pillshape_blue"
+                    android:ems="10"
+                    android:hint="Topic"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/CourseSubject"
+                    app:layout_constraintStart_toStartOf="@+id/CourseSubject"
+                    app:layout_constraintTop_toBottomOf="@+id/CourseSubject" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="132dp"
+                    android:gravity="center"
+                    android:text="Upload Icon"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+                <EditText
+                    android:id="@+id/Note"
+                    android:layout_width="257dp"
+                    android:layout_height="196dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_pillshape_blue"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="Note"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/Topic"
+                    app:layout_constraintStart_toStartOf="@+id/Topic"
+                    app:layout_constraintTop_toBottomOf="@+id/Topic" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="257dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bgc_pillshape_darkgreen"
+                    android:padding="10dp"
+                    android:text="Cerate Deck"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/Note"
+                    app:layout_constraintStart_toStartOf="@+id/Note"
+                    app:layout_constraintTop_toBottomOf="@+id/Note" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -37,23 +37,23 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/TabLayout"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="40dp"
             android:background="@null"
-            app:tabIndicatorColor="@color/rick_black"
-            app:tabIndicator="@drawable/tab_indi"
-            app:tabMode="fixed"
-            app:tabIndicatorGravity="stretch"
-            app:tabIndicatorAnimationMode="elastic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:tabIndicator="@drawable/tab_indi"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/rick_black"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="fixed" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="58dp"
             android:background="@color/rick_black"
             app:layout_constraintEnd_toEndOf="@+id/TabLayout"
             app:layout_constraintHorizontal_bias="-1.0"

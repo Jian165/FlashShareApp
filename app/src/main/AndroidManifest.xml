@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FlashShareApp"
         tools:targetApi="31">
         <activity
+            android:name=".CreateDeck"
+            android:exported="false" />
+        <activity
             android:name=".UserData"
             android:exported="false" />
         <activity
